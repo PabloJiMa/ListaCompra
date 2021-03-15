@@ -18,6 +18,8 @@ import { RecordarPassComponent } from './admin/recordar-pass/recordar-pass.compo
 import { VerificarEmailComponent } from './admin/verificar-email/verificar-email.component';
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso-incorrecto.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 //Servicios
 import { NgAuthService } from './services/auth.service';
@@ -30,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso-incorrecto.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -43,7 +46,8 @@ import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso
     NavbarComponent,
     PageNotFoundComponent,
     EntradasComponent,
-    AccesoIncorrectoComponent    
+    AccesoIncorrectoComponent,
+    DialogComponent    
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [NgAuthService],
   bootstrap: [AppComponent]
