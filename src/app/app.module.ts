@@ -6,15 +6,31 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 
+//Modulos de Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+//Componentes
 import { LoginComponent } from './admin/login/login.component';
 import { RegistroComponent } from './admin/registro/registro.component';
 import { RecordarPassComponent } from './admin/recordar-pass/recordar-pass.component';
 import { VerificarEmailComponent } from './admin/verificar-email/verificar-email.component';
+import { EntradasComponent } from './components/entradas/entradas.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+//Servicios
+import { NgAuthService } from './services/auth.service';
+
+//Angular Material
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso-incorrecto.component';
 
 
 @NgModule({
@@ -23,7 +39,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     RegistroComponent,
     RecordarPassComponent,
-    VerificarEmailComponent
+    VerificarEmailComponent,
+    NavbarComponent,
+    PageNotFoundComponent,
+    EntradasComponent,
+    AccesoIncorrectoComponent    
   ],
   imports: [
     BrowserModule,
@@ -31,9 +51,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [NgAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

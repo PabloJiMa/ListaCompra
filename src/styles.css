@@ -1,4 +1,55 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.navbar-spacer {
+    flex: 1 1 auto;
+}
+
+.button-row {
+    display: block;    
+    margin: 8px 8px 8px;
+}
+
+.button-row>button {      
+    margin: 4px 4px 4px;
+}
+
+.card{    
+    margin: 2% 20% 0% 20%;
+}
+
+.negrita{
+    font-weight: bold;
+    
+}
+
+.grande{
+    font-size: 1.75vw;
+}
+.pequenya{
+    font-size: 0.8vw;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
+
+a {
+    text-decoration: underline;    
+  }
+
