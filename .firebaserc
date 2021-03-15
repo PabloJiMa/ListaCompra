@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "listacompra-tolo": {
+      "hosting": {
+        "ListaCompra": [
+          "listacompra-tolo"
+        ]
+      }
+    }
+  }
+}
