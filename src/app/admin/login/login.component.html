@@ -1,0 +1,45 @@
+
+<mat-card class="card center">
+    <span class="negrita grande">Iniciar sesión</span>
+
+    <form class="camposlogin card" [formGroup]="form">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ex. email@example.com" formControlName="userName"/> 
+          <mat-hint *ngIf="enviado && f.userName.errors">
+            <mat-icon [inline]="true" class="mensajeError">info</mat-icon>    
+            <span *ngIf="f.userName.errors.required" class="mensajeError">El email es obligatorio</span>            
+          </mat-hint>
+          <mat-hint *ngIf="f.userName.errors && f.userName.errors.email">
+            <mat-icon [inline]="true" class="mensajeError">info</mat-icon>                
+            <span class="mensajeError">El email debe tener un formato válido</span> 
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="full-width">              
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput formControlName="userPass"/> 
+            <mat-hint *ngIf="enviado && f.userPass.errors">
+              <mat-icon [inline]="true" class="mensajeError">info</mat-icon>    
+              <span class="mensajeError" *ngIf="f.userPass.errors.required">La contraseña es obligatoria</span>
+            </mat-hint> 
+            <mat-hint *ngIf="f.userPass.errors && f.userPass.errors.minlength">
+              <mat-icon [inline]="true" class="mensajeError">info</mat-icon>                  
+              <span class="mensajeError">La contraseña debe tener al menos 6 caracteres</span> 
+            </mat-hint> 
+          </mat-form-field>         
+    </form>
+    <span class="pequenya" routerLink="/recordar-pass">Si has olvidado tu contraseña pulsa <a class="negrita">aquí</a></span>
+    <br/>
+    <span class="pequenya" routerLink="/registro">Si deseas registrarte pulsa <a class="negrita">aquí</a></span>
+
+    <div class="button-row card right">        
+        <button mat-raised-button color="primary"
+            (click)="validarObligatorios()">Login</button>
+    </div>
+
+    
+</mat-card>
+
+
+
+

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">    
+    <span>Lista de la compra</span>
+    <span class="navbar-spacer"></span>
+    <button mat-icon-button aria-label="Home" (click)="navegarHome()" *ngIf="isLoggedIn$ | async as isLoggedIn">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Menu" [matMenuTriggerFor]="menu" *ngIf="isLoggedIn$ | async as isLoggedIn">
+      <mat-icon>face</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="detalleCuenta()">
+          <mat-icon>manage_accounts</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item (click)="auth.LogOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Salir</span>
+        </button>
+      </mat-menu>
+</mat-toolbar>

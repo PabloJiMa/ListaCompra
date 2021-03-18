@@ -1,0 +1,28 @@
+<mat-card class="card center">
+    <span class="negrita grande">Perfil del usuario</span>
+
+    <div class="card pt20" *ngIf="auth.userState as user">
+        <div class="contenedorPerfil">
+            <div class="left imagen">
+                <img class="icono" src="{{(user.foto) ? user.foto : '/assets/dummy-user.png'}}"
+                    alt="{{user.nombre}}">
+            </div>  
+            <div class="left texto">
+                <div class="inline">
+                    <div class="left">            
+                        <mat-label class="label">Hola: </mat-label>
+                        <mat-label class="label negrita">{{(user.nombre) ? user.nombre : 'User'}}</mat-label>                      
+                    </div>
+                    <div class="left">
+                        <mat-label class="label">Email: </mat-label>
+                        <mat-label class="label negrita">{{user.email}}</mat-label>                
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+
+
+

@@ -1,0 +1,51 @@
+<mat-card class="card center">
+    <span class="negrita grande">Registro de nuevo usuario</span>
+
+    <form class="camposlogin card" [formGroup]="form">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ex. email@example.com" formControlName="userName"/> 
+          <mat-hint *ngIf="enviado && f.userName.errors && f.userName.errors.required">
+            <mat-icon [inline]="true" class="mensajeError">info</mat-icon>    
+            <span class="mensajeError">El email es obligatorio</span>            
+          </mat-hint>
+          <mat-hint *ngIf="f.userName.errors && f.userName.errors.email">
+            <mat-icon [inline]="true" class="mensajeError">info</mat-icon>                
+            <span class="mensajeError">El email debe tener un formato válido</span> 
+          </mat-hint>                
+        </mat-form-field>
+        <mat-form-field class="full-width">              
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput formControlName="userPass"/>   
+            <mat-hint *ngIf="enviado && f.userPass.errors && f.userPass.errors.required">
+                <mat-icon [inline]="true" class="mensajeError">info</mat-icon>    
+                <span class="mensajeError">La contraseña es obligatoria</span>
+            </mat-hint> 
+            <mat-hint *ngIf="f.userPass.errors && f.userPass.errors.minlength">
+                <mat-icon [inline]="true" class="mensajeError">info</mat-icon>                  
+                <span class="mensajeError">La contraseña debe tener al menos 6 caracteres</span> 
+            </mat-hint>      
+          </mat-form-field>
+        <mat-form-field class="full-width">              
+            <mat-label>Confirmación de contraseña</mat-label>
+            <input type="password" matInput formControlName="userPassComprobar"/>  
+            <mat-hint *ngIf="enviado && f.userPassComprobar.errors">
+                <mat-icon [inline]="true" class="mensajeError">info</mat-icon>    
+                <span *ngIf="enviado && f.userPassComprobar.errors && f.userPassComprobar.errors.required" class="mensajeError">La contraseña es obligatoria</span>
+                <span *ngIf="enviado && f.userPassComprobar.errors && f.userPassComprobar.errors.debeCoincidir" class="mensajeError">Las contraseñas deben ser coincidentes</span>
+            </mat-hint>  
+            <mat-hint *ngIf="f.userPassComprobar.errors && f.userPassComprobar.errors.minlength">
+                <mat-icon [inline]="true" class="mensajeError">info</mat-icon>                  
+                <span class="mensajeError">La contraseña debe tener al menos 6 caracteres</span> 
+            </mat-hint>  
+        </mat-form-field>
+    </form>
+    <div class="button-row card right">  
+        <button mat-raised-button 
+            routerLink="/login">Volver</button>       
+        <button mat-raised-button color="primary"
+            (click)="Registro()">Registro</button>
+    </div>
+
+    
+</mat-card>

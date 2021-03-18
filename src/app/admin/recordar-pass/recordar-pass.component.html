@@ -1,0 +1,17 @@
+<mat-card class="card center">
+    <span class="negrita grande">Recordar contraseña</span>
+
+    <form class="camposlogin card">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ex. email@example.com" #userName/>                 
+        </mat-form-field>        
+    </form>    
+
+    <div class="button-row card right"> 
+        <button mat-raised-button 
+        routerLink="/login">Volver</button>       
+        <button mat-raised-button color="primary"
+            (click)="auth.RecordarPass(userName.value)">Enviar</button>
+    </div>
+</mat-card>
