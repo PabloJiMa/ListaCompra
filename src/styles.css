@@ -19,7 +19,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .card{    
-    margin: 2% 20% 0% 20%;
+    margin: 2% 15% 0% 15%;
 }
 
 .negrita{
@@ -28,10 +28,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .grande{
-    font-size: 1.75vw;
+    font-size: 24px;
 }
 .pequenya{
-    font-size: 0.8vw;
+    font-size: 10px;
 }
 
 
@@ -52,4 +52,42 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a {
     text-decoration: underline;    
   }
+
+.icono {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.contenedorPerfil {
+    display: flex;
+}
+  
+.contenedorPerfil  > .imagen {
+    flex: 0 0 30%;
+}
+  
+.contenedorPerfil > .texto {
+    flex: 1;
+    display: flex;
+    margin: 0 0 0 15%;
+    justify-content: center;
+    align-items: center;
+}
+
+.pt20{
+    padding-top: 20px;
+}
+
+.inline {
+    display: inline;
+}
+
+.label{
+    font-size: 1.5vw;
+}
+
+.mensajeError{
+    color: #d93025;
+    font-size: 0.6vw;
+}
 

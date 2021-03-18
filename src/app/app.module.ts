@@ -20,9 +20,12 @@ import { EntradasComponent } from './components/entradas/entradas.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso-incorrecto.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 //Servicios
 import { NgAuthService } from './services/auth.service';
+import { ControlMensajesService } from './services/control-mensajes.service';
 
 //Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,11 +33,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PageNotFoundComponent,
     EntradasComponent,
     AccesoIncorrectoComponent,
-    DialogComponent    
+    DialogComponent,
+    PerfilComponent    
   ],
   imports: [
     BrowserModule,
@@ -61,9 +65,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    ReactiveFormsModule
   ],
-  providers: [NgAuthService],
+  providers: [NgAuthService, ControlMensajesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
