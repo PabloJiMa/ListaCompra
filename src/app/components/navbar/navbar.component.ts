@@ -11,7 +11,8 @@ import { NgAuthService } from '../../services/auth.service';
 export class NavbarComponent implements OnInit {
   
   isLoggedIn$: Observable<boolean> = new Observable<boolean>();
-
+  tituloApp: string = "";
+  
   constructor(
     public router: Router,
     public auth: NgAuthService       
@@ -20,6 +21,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.auth.isLoggedIn;
+    this.auth.isLoggedIn.subscribe(data=>{        
+        this.tituloApp = data ? "Lista Compra": "Bienvenido";
+    });
   }
 
   detalleCuenta(){

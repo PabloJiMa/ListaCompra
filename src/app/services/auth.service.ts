@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 //import { firebase } from 'firebase/app';
-import { User } from "../services/user";
+import { User } from "../clases/user";
 import { ControlMensajesService } from "../services/control-mensajes.service";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -41,8 +41,7 @@ export class NgAuthService {
     }
     
     //Método para hacer login
-    Login(email: string, pass: string) {
-      
+    Login(email: string, pass: string) {      
       return this.afAuth.signInWithEmailAndPassword(email, pass)
         .then((result) => {
           this.ngZone.run(() => {
@@ -63,7 +62,7 @@ export class NgAuthService {
     Registro(email: string, pass: string) {
       return this.afAuth.createUserWithEmailAndPassword(email, pass)
         .then((result) => {
-          this.EnvioCorreoVerificacion();
+          //this.EnvioCorreoVerificacion();
           this.SetUserData(result.user);
         }).catch((error) => {
           console.log(error);
@@ -74,17 +73,23 @@ export class NgAuthService {
         })
     }
 
-    //Método para enviar correo de verificación
-    EnvioCorreoVerificacion() {
-        return this.afAuth.currentUser.then(u => u!.sendEmailVerification())
-        .then(() => {
-          this.router.navigate(['login']);
-          this.dialog
-          .open(DialogComponent, {
-            data: this.mensajes.getMensaje("auth/register-ok")
-          });  
-        })
-    }    
+    //Método para enviar correo de verificación.     
+    //EnvioCorreoVerificacion() {
+    //    return this.afAuth.currentUser.then(u => u!.sendEmailVerification())
+    //    .then(() => {
+    //      this.router.navigate(['login']);
+    //      this.dialog
+    //      .open(DialogComponent, {
+    //        data: this.mensajes.getMensaje("auth/register-ok")
+    //      });  
+    //    }).catch((error) => {
+    //      console.log(error);
+    //      this.dialog
+    //      .open(DialogComponent, {
+    //        data: this.mensajes.getMensaje(error.code)
+    //      });          
+    //    })
+    //}    
     
     //Método para recordar contraseña
     RecordarPass(email: string) {
@@ -123,17 +128,16 @@ export class NgAuthService {
     //  })
     //}
     
-    //Método para recoger el usuario registrado/que ha hecho login
+    //Método para recoger el usuario registrado/que ha hecho login, e insertarlo en una coleccion
     SetUserData(user: any) {
       const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-      const userState: User = {
+      const userRegistrado: User = {
         uid: user.uid,
         email: user.email,
-        nombre: user.displayName,
-        foto: user.photoURL,
-        emaiVerificado: user.emailVerified === true ? true : false
+        nombre: user.email,
+        foto: ""        
       }
-      return userRef.set(userState, {
+      return userRef.set(userRegistrado, {
         merge: true
       })
     }
@@ -146,4 +150,8 @@ export class NgAuthService {
         this.loggedIn.next(false);
       })
     }  
+
+    getTotalUsers(){
+      //return this.afs.collection('users').
+    }
 }

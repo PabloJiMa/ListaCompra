@@ -37,7 +37,14 @@ export class ControlMensajesService {
         case 'auth/recover-pass':
           return 'Se ha enviado un correo para poder resetear tu contraseña.';
           break;
-            
+          
+        //LISTA DE LA COMPRA
+        case 'lista/delete-lista':
+            return 'La lista se ha eliminado con éxito.';
+            break;
+        case 'lista/add-lista':
+              return 'La lista se ha creado con éxito.';
+              break;
 
         //ERROR GENÉRICO. CÓDIGO INDICADO NO EXISTENTE
         default:

@@ -33,10 +33,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -67,9 +75,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDialogModule,
     MatMenuModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule
   ],
-  providers: [NgAuthService, ControlMensajesService],
+  providers: [
+    NgAuthService, 
+    ControlMensajesService, 
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
