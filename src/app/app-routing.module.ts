@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { AccesoIncorrectoComponent } from './components/acceso-incorrecto/acceso-incorrecto.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { DetallelistacompraComponent } from './components/detallelistacompra/detallelistacompra.component';
 
 //Servicios
 import { AuthGuard } from "./services/auth.guard";
@@ -21,6 +22,7 @@ const  routes:  Routes  = [
       { path: 'recordar-pass', component:  RecordarPassComponent },
       { path: 'verificar-email', component:  VerificarEmailComponent },
       { path: 'entradas', component:  EntradasComponent, canActivate: [AuthGuard]  },
+      { path: 'detallelistacompra', component:  DetallelistacompraComponent, canActivate: [AuthGuard]  },
       { path: 'acceso-incorrecto', component: AccesoIncorrectoComponent },
       { path: 'perfil', component: PerfilComponent },
       { path: '**', component: PageNotFoundComponent }

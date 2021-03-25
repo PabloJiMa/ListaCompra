@@ -18,13 +18,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 4px 4px 4px;
 }
 
-.card{    
-    margin: 2% 15% 0% 15%;
+@media only screen and (max-width: 600px) {
+    .card{    
+        margin: 2% 1% 0% 1%;
+    }    
 }
 
+@media only screen and (min-width: 600px) {
+    .card{    
+        margin: 2% 15% 0% 15%;
+    }    
+}
+
+/*ESTILOS DE FUENTE*/
+
 .negrita{
-    font-weight: bold;
-    
+    font-weight: bold;    
 }
 
 .grande{
@@ -32,11 +41,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .pequenya{
     font-size: 10px;
-}
-
-
-.full-width {
-    width: 100%;
 }
 
 .center {
@@ -49,9 +53,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-align: left;
 }
 
+.centerImportant {
+    text-align: center!important;
+}
+.rightImportant {
+    text-align: right!important;
+}
+.leftImportant {
+    text-align: left!important;
+}
+
+.full-width {
+    width: 100%;
+}
+
 a {
     text-decoration: underline;    
-  }
+}
 
 .icono {
     max-height: 100%;
@@ -80,6 +98,10 @@ a {
 
 .pt5{
     padding-top: 5px;
+}
+
+.pr10{
+    padding-right: 10px;
 }
 
 .inline {
@@ -114,3 +136,42 @@ a {
     align-items: center;
     justify-content: center;
 }
+
+.cursorPointer{
+    cursor: pointer;
+}
+
+
+/*ESTILOS PARA TABLA. SOBREESCRITURA DE CIERTOS ESTILOS PROPIOS DE MATERIAL*/
+
+.cabeceraTabla{
+    font-weight: bold;    
+    font-size: 14px;    
+}
+
+.cabeceraIcono{
+    width: 30px;
+}
+.cabeceraFechaTabla{
+    width: 100px;
+}
+.divIconoTabla {
+    display:flex;
+    flex-direction:row;
+    justify-content:center; 
+  }
+
+.iconoTabla {
+    display:flex;             
+    align-self:center; 
+}
+
+th.mat-header-cell, td.mat-cell{
+    padding: 0px 5px 0px 5px!important;
+}
+
+th.mat-header-cell, td.mat-cell{
+    padding: 0px 5px 0px 5px!important;
+}
+
+

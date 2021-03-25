@@ -41,11 +41,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FechaPipe } from './pipes/fecha.pipe';
+import { DetallelistacompraComponent } from './components/detallelistacompra/detallelistacompra.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     EntradasComponent,
     AccesoIncorrectoComponent,
     DialogComponent,
-    PerfilComponent    
+    PerfilComponent,
+    FechaPipe,
+    DetallelistacompraComponent    
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     ReactiveFormsModule
   ],
   providers: [

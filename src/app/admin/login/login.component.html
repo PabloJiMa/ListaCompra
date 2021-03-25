@@ -31,6 +31,10 @@
     <span class="pequenya" routerLink="/recordar-pass">Si has olvidado tu contraseña pulsa <a class="negrita">aquí</a></span>
     <br/>
     <span class="pequenya" routerLink="/registro">Si deseas registrarte pulsa <a class="negrita">aquí</a></span>
+    <br/>
+    <form [formGroup]="form">
+      <span class="pequenya pr10">Recordar credenciales</span>  <span><mat-checkbox formControlName="rememberPwd"></mat-checkbox></span>
+    </form>
 
     <div class="button-row card right">        
         <button mat-raised-button color="primary"

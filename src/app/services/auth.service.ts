@@ -41,14 +41,18 @@ export class NgAuthService {
     }
     
     //Método para hacer login
-    Login(email: string, pass: string) {      
+    Login(email: string, pass: string, rememberPwd: boolean) {      
       return this.afAuth.signInWithEmailAndPassword(email, pass)
-        .then((result) => {
+        .then(() => {
           this.ngZone.run(() => {
             console.log('Autenticado con éxito');
             this.router.navigate(['entradas']);
-          });
-          this.SetUserData(result.user);
+          });          
+          if(rememberPwd){
+              this.CookieUsuario(email, pass);
+          } else {
+            this.EliminarCookieUsuario();
+          }
           this.loggedIn.next(true);
         }).catch((error) => {
           this.dialog
@@ -154,4 +158,15 @@ export class NgAuthService {
     getTotalUsers(){
       //return this.afs.collection('users').
     }
+
+    CookieUsuario(email: string, pass: string){
+      localStorage.setItem('userMail',email);
+      localStorage.setItem('userPass',pass);
+    }
+
+    EliminarCookieUsuario(){
+      localStorage.setItem('userMail',"");
+      localStorage.setItem('userPass',"");
+    }
+
 }

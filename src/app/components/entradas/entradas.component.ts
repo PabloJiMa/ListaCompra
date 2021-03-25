@@ -1,10 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListaCompraService } from 'src/app/services/lista-compra.service';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-entradas',
@@ -18,7 +20,8 @@ export class EntradasComponent implements OnInit {
   listaTabla: MatTableDataSource<any> = new MatTableDataSource(this.lista);
 
   constructor(private _listaCompraService: ListaCompraService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
     ) {
       this.nuevaListaCompra = fb.group({
         fechaNuevaLista: new FormControl(),
@@ -86,7 +89,7 @@ export class EntradasComponent implements OnInit {
 
   editarLista(id: string){
     console.log("🚀 ~ file: entradas.component.ts ~ line 53 ~ EntradasComponent ~ editarLista ~ id", id)
-
+    this.router.navigate(['/detallelistacompra', { id: id }]);
   }
 
   eliminarLista(id: string){

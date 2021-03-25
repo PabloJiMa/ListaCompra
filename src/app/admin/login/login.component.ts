@@ -5,7 +5,7 @@ import { NgAuthService } from '../../services/auth.service';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { isDevMode } from '@angular/core'
+import { isDevMode } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,8 @@ import { isDevMode } from '@angular/core'
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormBuilder().group({
       userName: ['', [Validators.required, Validators.email]],      
-      userPass: ['', [Validators.required, Validators.minLength(6)]]
+      userPass: ['', [Validators.required, Validators.minLength(6)]],
+      rememberPwd: ['']
     });
   enviado: boolean = false;
   
@@ -31,13 +32,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       userName: ['', [Validators.required, Validators.email]],      
-      userPass: ['', [Validators.required, Validators.minLength(6)]]
+      userPass: ['', [Validators.required, Validators.minLength(6)]],
+      rememberPwd: ['']
     });
 
     //TEMPORAL PARA HACER DEBUG
-    if(isDevMode()){
-      this.form.controls["userName"].setValue("eltoloking@gmail.com");
-      this.form.controls["userPass"].setValue("El_Tolo");
+    if(localStorage.getItem('userMail') !== null && localStorage.getItem('userMail') !== "" /*|| isDevMode()*/){
+      this.form.controls["userName"].setValue(localStorage.getItem('userMail'));
+      this.form.controls["userPass"].setValue(localStorage.getItem('userPass'));
+      this.form.controls["rememberPwd"].setValue(true);
+    } else {
+      this.form.controls["rememberPwd"].setValue(false);
     }
     
   }
@@ -50,7 +55,7 @@ export class LoginComponent implements OnInit {
       if (this.form.invalid) {     
         return;
       } else {
-        this.auth.Login(this.f.userName.value, this.f.userPass.value);
+        this.auth.Login(this.f.userName.value, this.f.userPass.value, this.f.rememberPwd.value);
       }
   }
 }

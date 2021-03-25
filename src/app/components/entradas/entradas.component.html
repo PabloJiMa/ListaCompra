@@ -15,7 +15,7 @@
             </mat-form-field>
         </div>
         <div class="iconoCentrado">
-            <mat-icon (click)="agregarListaCompra()">add_circle</mat-icon>            
+            <mat-icon (click)="agregarListaCompra()" [ngClass]="'cursorPointer'">add_circle</mat-icon>            
         </div>
     </div> 
 </mat-card>
@@ -30,39 +30,40 @@
         
         <!-- Editar -->
         <ng-container matColumnDef="editar">
-            <th mat-header-cell *matHeaderCellDef> E. </th>
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'centerImportant cabeceraTabla cabeceraIcono'"> Editar </th>
             <td mat-cell *matCellDef="let element"> 
-                <div (click)="editarLista(element.id)">
-                    <mat-icon>mode_edit</mat-icon>                    
+                <div (click)="editarLista(element.id)" class="divIconoTabla">
+                    <mat-icon [ngClass]="'iconoTabla cursorPointer'">mode_edit</mat-icon>                    
                 </div>
             </td>
         </ng-container>
 
         <!-- Eliminar -->
         <ng-container matColumnDef="eliminar">
-            <th mat-header-cell *matHeaderCellDef> B. </th>
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'centerImportant cabeceraTabla cabeceraIcono'"> Eliminar </th>
             <td mat-cell *matCellDef="let element"> 
-                <div (click)="eliminarLista(element.id)">
-                    <mat-icon>delete</mat-icon>                    
+                <div (click)="eliminarLista(element.id)" class="divIconoTabla">
+                    <mat-icon [ngClass]="'iconoTabla cursorPointer'">delete</mat-icon>                    
                 </div>
             </td>
         </ng-container>
 
         <!-- Fecha -->
-        <ng-container matColumnDef="fecha">
-          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <ng-container matColumnDef="fecha" [ngClass]="''">
+          <th mat-header-cell *matHeaderCellDef [ngClass]="'cabeceraTabla cabeceraFechaTabla'"> Fecha </th>
           <td mat-cell *matCellDef="let element"> 
-            <mat-form-field appearance="fill" [ngClass]="'pt5'">
+              {{element.fecha | fecha}}
+            <!--<mat-form-field [ngClass] = "'full-width'" [ngClass]="'pt5'">
                 <input matInput [matDatepicker]="picker" [value]="element.fecha" disabled>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field>-->
           </td>
         </ng-container>
       
         <!-- Descripcion -->
         <ng-container matColumnDef="descripcion">
-          <th mat-header-cell *matHeaderCellDef> Descripción </th>
+          <th mat-header-cell *matHeaderCellDef [ngClass]="'cabeceraTabla'"> Descripción </th>
           <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
         </ng-container>
       
