@@ -20,13 +20,13 @@ export class ItemListaCompraService {
     
     ) { }
 
-  addItemListaCompra(itemListaCompra: any, id: string){
-    return this.firestore.collection(this.nombreColeccion + '/' + id + '/' + this.nombreColeccionItem).add(itemListaCompra).then(()=>{
+  addItemListaCompra(itemListaCompra: any, id: string){    
+    return this.firestore.collection(this.nombreColeccion + '/' + id + '/' + this.nombreColeccionItem).add(itemListaCompra).then(()=>{      
       this.dialog
       .open(DialogComponent, {
         data: this.mensajes.getMensaje("lista/add-item-lista")
       });
-    }).catch((error) => {
+    }).catch((error) => {      
       this.dialog
       .open(DialogComponent, {
         data: this.mensajes.getMensaje(error.code)
@@ -51,7 +51,9 @@ export class ItemListaCompraService {
   }
 
   getItemsListaCompra(id: string): Observable<any>{
-    return this.firestore.collection(this.nombreColeccion + '/' + id + '/' + this.nombreColeccionItem).snapshotChanges();
+    //console.log("🚀 ~ file: item-lista-compra.service.ts ~ line 57 ~ ItemListaCompraService ~ getItemsListaCompra ~ ",this.nombreColeccion + '/' + id + '/' + this.nombreColeccionItem);    
+    return this.firestore.collection(this.nombreColeccion).doc(id).collection(this.nombreColeccionItem).snapshotChanges();
+    
   }
 
 }

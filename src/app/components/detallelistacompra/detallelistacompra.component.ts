@@ -1,5 +1,5 @@
+              
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -9,19 +9,18 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-detallelistacompra',
   templateUrl: './detallelistacompra.component.html',
   styleUrls: ['./detallelistacompra.component.css']
 })
-export class DetalleListaCompraComponent implements OnInit {
-  listaItems$: Observable<any> | undefined;
-  idLista: string | undefined;
+export class DetalleListaCompraComponent implements OnInit {  
+  idLista: string;
   nuevoItemListaCompra: FormGroup;
   listaItems: any[] = [];
-  columnas: string[] = ['editar', 'eliminar', 'fecha', 'descripcion'];
+  columnas: string[] = ['eliminar', 'descripcion', 'descripcionadicional'];
   listaItemsTabla: MatTableDataSource<any> = new MatTableDataSource(this.listaItems);
 
   constructor(private route: ActivatedRoute,
@@ -29,6 +28,7 @@ export class DetalleListaCompraComponent implements OnInit {
       private fb: FormBuilder,
       private router: Router
     ) {
+      this.idLista = "";
       this.nuevoItemListaCompra = fb.group({        
         descripcionNuevoItemLista: new FormControl(),
         descripcionAdicNuevoItemLista: new FormControl(),
@@ -36,14 +36,43 @@ export class DetalleListaCompraComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.listaItems$ = this.route.paramMap.pipe(
-      switchMap(params => {
-        this.idLista = params.get('id')!;
-        return this._itemListaCompraService.getItemsListaCompra(this.idLista);
-      })
-    );
+    this.route.queryParamMap.subscribe(params => { 
+      let id = params.get('id');
+      //console.log("🚀 ~ file: detallelistacompra.component.ts ~ line 42", params.get('id'));
+      this.idLista = id !== null ? id! : "";  
+      console.log("🚀 ~ file: detallelistacompra.component.ts ~ line 44", this.idLista);
+      //this.listaItems$ = 
+      this._itemListaCompraService.getItemsListaCompra(this.idLista).subscribe(
+        data =>{
+            this.listaItems = [];            
+            data.forEach((element: any) => {            
+              this.listaItems.push({            
+                id: element.payload.doc.id,
+                descripcion: element.payload.doc.data()["descripcion"],
+                descripcionadicional: element.payload.doc.data()["descripcionadicional"],                
+                fechaalta: element.payload.doc.data()["fechaalta"] === null ? "" : new Date(element.payload.doc.data()["fechaalta"].toDate()),
+                fechamodificacion: element.payload.doc.data()["fechamodificacion"] === null ? "" : new Date(element.payload.doc.data()["fechamodificacion"].toDate()),
+                usuarioalta: element.payload.doc.data()["usuarioalta"],
+                usuariomodificacion: element.payload.doc.data()["usuariomodificacion"]
+              })
+              
+            });
+            //this.listaItemsTabla.forEach((element: any) => {            
+            //
+            //  console.log("🚀 ~ file: detallelistacompra.component.ts ~ line 62 ~ EntradasComponent ~ this.listaItemsTabla.forEach ~ element", element);
+            //  
+            //});
+            this.listaItemsTabla = new MatTableDataSource(this.listaItems);
+        }      
+      );
+      console.log("🚀 ~ file: detallelistacompra.component.ts ~ line 68", this.listaItems);
+    });
   }
 
+  filtrarLista(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.listaItemsTabla.filter = filterValue.trim().toLowerCase();
+  }
 
   agregarItemListaCompra(){    
     let fechaActual = new Date();
@@ -60,8 +89,9 @@ export class DetalleListaCompraComponent implements OnInit {
       usuarioalta: usuario.uid,
       usuariomodificacion: ""
     };
-    console.log(nuevoItemLista);
+    console.log("🚀 ~ file: detallelistacompra.component.ts ~ line 71", this.idLista);
     this._itemListaCompraService.addItemListaCompra(nuevoItemLista, this.idLista!).then(() => {
+    
       this.nuevoItemListaCompra.reset();
     });
   }
@@ -70,4 +100,7 @@ export class DetalleListaCompraComponent implements OnInit {
     this._itemListaCompraService.deleteItemListaCompra(id, this.idLista!);
   }
 
+  volver(){
+    this.router.navigate(['entradas']);
+  }
 }

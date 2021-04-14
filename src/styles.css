@@ -131,6 +131,11 @@ a {
     padding-right: 15px;
 }
 
+.descripcionListaDet{
+    width: 43%;
+    padding-right: 15px;
+}
+
 .iconoCentrado{
     display: flex;
     align-items: center;

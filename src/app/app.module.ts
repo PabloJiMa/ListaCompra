@@ -47,7 +47,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FechaPipe } from './pipes/fecha.pipe';
-import { DetallelistacompraComponent } from './components/detallelistacompra/detallelistacompra.component';
+import { DetalleListaCompraComponent } from './components/detallelistacompra/detallelistacompra.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ import { DetallelistacompraComponent } from './components/detallelistacompra/det
     DialogComponent,
     PerfilComponent,
     FechaPipe,
-    DetallelistacompraComponent    
+    DetalleListaCompraComponent    
   ],
   imports: [
     BrowserModule,

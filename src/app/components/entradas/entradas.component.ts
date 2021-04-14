@@ -31,13 +31,15 @@ export class EntradasComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getListaCompra();    
+    this.getListaCompra();  
+    localStorage.setItem('id-lista', '');  
   }
 
   getListaCompra(){
     this._listaCompraService.getListaCompra().subscribe(
       data =>{
           this.lista = [];
+          console.log("🚀 ~ file: entradas.component.ts ~ line 42 ~ EntradasComponent ~ getListaCompra ~ this.lista = [];", data);
           data.forEach((element: any) => {            
             this.lista.push({            
               id: element.payload.doc.id,
@@ -87,9 +89,10 @@ export class EntradasComponent implements OnInit {
     });
   }
 
-  editarLista(id: string){
-    console.log("🚀 ~ file: entradas.component.ts ~ line 53 ~ EntradasComponent ~ editarLista ~ id", id)
-    this.router.navigate(['/detallelistacompra', { id: id }]);
+  editarLista(id_lista: string){    
+    this.router.navigate(['detallelistacompra'], {queryParams: { id: id_lista }});
+    //console.log("🚀 ~ file: entradas.component.ts ~ line 93 ~ EntradasComponent ~ editarLista ~ ", id_lista );
+    
   }
 
   eliminarLista(id: string){

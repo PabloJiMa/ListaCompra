@@ -46,6 +46,14 @@ export class ControlMensajesService {
               return 'La lista se ha creado con éxito.';
               break;
 
+        case 'lista/add-item-lista':
+          return 'El item se ha agregado a la lista con éxito.';
+          break;
+        
+          case 'lista/delete-item-lista':
+            return 'El item se ha eliminado de la lista con éxito.';
+            break;
+
         //ERROR GENÉRICO. CÓDIGO INDICADO NO EXISTENTE
         default:
           return 'Se ha producido un error. Contacte con un administrador.'

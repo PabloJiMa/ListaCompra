@@ -1,1 +1,67 @@
-<p>detallelistacompra works!</p>
+<mat-card class="card center">
+    <div class="left contenedorPerfil" >
+        <div class="descripcionListaDet">
+            <mat-form-field [ngClass] = "'full-width'" [formGroup]="nuevoItemListaCompra">   
+                <mat-label>Descripción</mat-label>         
+                <input matInput placeholder="Descripción" #descripcion formControlName="descripcionNuevoItemLista">
+            </mat-form-field>
+        </div>
+        <div class="descripcionListaDet">
+            <mat-form-field [ngClass] = "'full-width'" [formGroup]="nuevoItemListaCompra">   
+                <mat-label>Descripción Adicional</mat-label>         
+                <input matInput placeholder="Descripción Adicional" #descripcionAdicional formControlName="descripcionAdicNuevoItemLista">
+            </mat-form-field>
+        </div>
+        <div class="iconoCentrado">
+            <mat-icon (click)="agregarItemListaCompra()" [ngClass]="'cursorPointer'">add_circle</mat-icon>            
+        </div>
+    </div> 
+</mat-card>
+<mat-card class="card center pt5">
+    <mat-form-field [ngClass] = "'inputBuscar'">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="filtrarLista($event)" placeholder="Introduce texto para encontrar un item" #input>
+    </mat-form-field>
+    
+
+    <table mat-table [dataSource]="this.listaItemsTabla" class="full-width left">
+
+        <!-- Eliminar -->
+        <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'centerImportant cabeceraTabla cabeceraIcono'"> Eliminar </th>
+            <td mat-cell *matCellDef="let element"> 
+                <div (click)="eliminarItemLista(element.id)" class="divIconoTabla">
+                    <mat-icon [ngClass]="'iconoTabla cursorPointer'">delete</mat-icon>                    
+                </div>
+            </td>
+        </ng-container>
+      
+        <!-- Descripcion -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef [ngClass]="'cabeceraTabla'"> Descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <!-- Descripcion Adicional-->
+        <ng-container matColumnDef="descripcionadicional">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'cabeceraTabla'"> Descripción Ad.</th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcionadicional}} </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+      
+        <!-- Cuando no hay datos coincidentes -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="3" *ngIf="input.value === ''">No hay registros creados para esta lista</td>
+          <td class="mat-cell" colspan="3" *ngIf="input.value !== ''">No hay registros para el filtro "{{input.value}}"</td>
+        </tr>
+      </table>
+
+    <div class="button-row card right">        
+        <button mat-raised-button color="primary"
+            (click)="volver()">Volver</button>
+    </div>
+
+</mat-card>
+
